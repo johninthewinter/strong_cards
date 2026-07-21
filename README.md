@@ -1,12 +1,6 @@
 # Strong Cards
 
-```text
-  _____ _____ ____   ___  _   _  ____    ____    _    ____  ____  ____
- / ___//_   _/|  _ \ / _ \| \ | |/ ___|  / ___|  / \  |  _ \|  _ \/ ___|
- \___ \  | |  | |_) | | | |  \| | |  _  | |     / _ \ | |_) | | | \___ \
-  ___) | | |  |  _ <| |_| | |\  | |_| | | |___ / ___ \|  _ <| |_| |___) |
- /____/  |_|  |_| \_\\___/|_| \_|\____|  \____/_/   \_\_| \_\____/|____/
-```
+![Strong Cards — if you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid. Make no mistake: let the fish swim.](docs/strong-cards-poster.png)
 
 ## Bringing LLM work under deterministic control — and making hub-and-spoke orchestration stronger and cheaper
 
