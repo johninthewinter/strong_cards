@@ -73,6 +73,10 @@ preserve enough launch telemetry to explain the budget overrun.
 | C7 | pass, 303 s | pass, 235 s | pass, 451 s |
 | C8 | pass, 129 s | pass, 329 s | pass, 78 s |
 | C9 | timeout 900 s; retry pass 2,006 s | pass, 804 s | timeout 953 s; retry timeout 901 s |
+| C10, excluded | timeout 900 s at 3/7; retry timeout 900 s at 0/7 | three 900 s timeboxes across the sweep and a focused follow-up; best 5/7 | not run; the run ended at the C9 break |
+
+The Card 10 row is diagnostic only. The card is invalid for comparative
+inference, so no outcome in it affects a ceiling or a rank.
 
 The complete attempt rows, including Card 10 diagnostics, are in
 [`evidence/local-attempts.csv`](../evidence/local-attempts.csv).
