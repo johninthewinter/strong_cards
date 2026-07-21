@@ -118,7 +118,7 @@ contract. C5 and C6 deliberately revisit C1 and C2 under harder conditions.
 | C7 | Expression evaluator | Hand-written parser for integer arithmetic with variables, precedence, unary signs and parentheses; no `eval` | 8 |
 | C8 | Topological batcher | Batch tasks into parallel waves by dependency order, detect cycles, sort each batch for deterministic output | 9 |
 | C9 | Spreadsheet engine | Everything above at once: formula parser, forward references, `SUM(A1:B3)` ranges, cycle detection, truncating division | 11 |
-| C10 | Glob matcher | `*`, `?`, escaping, bracket classes, Unicode — **invalid: its contract and its tests contradict each other** | 7 |
+| C10 | Glob matcher | The intended grandmaster rung, where `*`, `?`, escaping, bracket classes and Unicode all land in one matcher — **currently invalid and under repair, because its contract and its tests contradict each other** | 7 |
 
 Every card ships its frozen contract, a failing stub, and its public test file.
 [Read the cards themselves](benchmark/README.md).
