@@ -773,22 +773,6 @@ def verify_internal_markdown_links() -> None:
             require(resolved.exists(), f"broken internal link in {path.relative_to(ROOT)}: {raw_target}")
 
 
-def verify_linkedin_posts() -> None:
-    for language in ("fr", "en"):
-        path = ROOT / "docs" / f"linkedin-post-{language}.md"
-        text = path.read_text(encoding="utf-8")
-        body = text.split("\n", 2)[-1].strip()
-        require(1600 <= len(body) <= 2500, f"LinkedIn {language} body must be 1,600-2,500 characters; got {len(body)}")
-        lower_body = body.lower()
-        normalized_body = lower_body.replace("-", " ")
-        require("control plane" in normalized_body, f"LinkedIn {language} post must name the control-plane boundary")
-        require("retry" in lower_body or "relance" in lower_body or "réessayer" in lower_body, f"LinkedIn {language} post must describe deterministic retry control")
-        require("strong card" in lower_body, f"LinkedIn {language} post must define the execution unit")
-        require("c1" in lower_body and "c9" in lower_body, f"LinkedIn {language} post must show the progressive ladder")
-        require("spreadsheet" in lower_body or "tableur" in lower_body, f"LinkedIn {language} post must explain Card 9")
-        require("leaderboard" in lower_body, f"LinkedIn {language} post must point to the comparison table")
-
-
 def main() -> int:
     checks = (
         verify_study,
@@ -803,7 +787,6 @@ def main() -> int:
         verify_protocol,
         verify_public_hygiene,
         verify_internal_markdown_links,
-        verify_linkedin_posts,
     )
     try:
         for check in checks:

@@ -222,8 +222,6 @@ lanes.
 - [GPT Card 10 reference artifact](evidence/reference-artifacts/metadata.json): exact excluded implementation, gate output, and hashes
 - [Strong Card template](protocol/strong-card-template.md): reusable contract
 - [Controller policy](protocol/controller-policy.md): fixed transitions and stop rules
-- [French LinkedIn post](docs/linkedin-post-fr.md): publication-ready version
-- [English LinkedIn post](docs/linkedin-post-en.md): alternate version
 - [Related work](REFERENCES.md): model routing and software-agent evaluation
 
 ## Verify the publication
