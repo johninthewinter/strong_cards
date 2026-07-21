@@ -1,5 +1,13 @@
 # Strong Cards
 
+```text
+  _____ _____ ____   ___  _   _  ____    ____    _    ____  ____  ____
+ / ___//_   _/|  _ \ / _ \| \ | |/ ___|  / ___|  / \  |  _ \|  _ \/ ___|
+ \___ \  | |  | |_) | | | |  \| | |  _  | |     / _ \ | |_) | | | \___ \
+  ___) | | |  |  _ <| |_| | |\  | |_| | | |___ / ___ \|  _ <| |_| |___) |
+ /____/  |_|  |_| \_\\___/|_| \_|\____|  \____/_/   \_\_| \_\____/|____/
+```
+
 ## A first step toward a fully deterministic delivery workflow — and toward stronger, more efficient hub-and-spoke LLM orchestration
 
 A **Strong Card** is a frozen, hash-pinned execution contract, compiled once by
