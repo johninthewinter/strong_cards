@@ -1,0 +1,29 @@
+name: verify-publication
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Install verification dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-dev.txt
+
+      - name: Verify evidence, hashes, links, and hygiene
+        run: make verify
+
+      - name: Verify red stubs and replay the excluded C10 reference
+        run: make verify-red

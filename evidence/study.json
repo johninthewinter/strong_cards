@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "strong-card-no-llm-orchestrator-2026-07",
+  "status": "first_test_preliminary",
+  "frozen_manifest_created_at_utc": "2026-07-08T22:09:26.086166+00:00",
+  "research_question": "Can smaller local models and diverse hosted model routes execute complex bounded implementation tasks when a frontier model removes ambiguity before execution and deterministic code controls the runtime loop?",
+  "thesis": "Use frontier capability to author and freeze the specification, interfaces, invariants, tests, and cards; use deterministic code to dispatch and gate; place smaller models inside bounded implementation cells.",
+  "architecture": {
+    "card_authoring": {
+      "execution_surface": "Codex",
+      "model": "GPT-5.5",
+      "reasoning_effort": "medium",
+      "attribution_source": "Codex session metadata and the contemporary handoff",
+      "manifest_metadata_error": "The frozen manifest says author_effort high; session turn metadata consistently records GPT-5.5 medium."
+    },
+    "frontier_pre_execution_role": [
+      "author the task specification",
+      "decompose work into Strong Cards",
+      "define interfaces and non-goals",
+      "author acceptance and property tests",
+      "verify red gates",
+      "freeze the manifest"
+    ],
+    "runtime_controller": {
+      "implementation": "plain shell and Python state machine",
+      "llm_control_plane_decisions_per_task_loop": 0,
+      "fixed_responsibilities": [
+        "iterate through the hard-coded ordered card array and skip later cards after a terminal failure",
+        "dispatch the configured execution adapter",
+        "run the v1 functional, anti-stub, test-integrity, and visible top-level directory-scope checks",
+        "append one evidence row per event within the current sweep invocation",
+        "permit the configured informed retry",
+        "continue or stop from explicit verdicts"
+      ],
+      "known_v1_limits": [
+        "working-directory and prompt isolation, not an operating-system sandbox",
+        "scope observation did not cover dotfiles, off-tree writes, reads, every deletion, or every copied context-file modification",
+        "the output file was truncated at sweep start and was append-only only within one invocation"
+      ]
+    },
+    "worker_role": "Implement one materialized card and choose code/tool actions; the controller did not delegate card order, retry count, gate verdict, or its next transition to worker output.",
+    "runtime_control_plane_llm_orchestrator_or_coordinator": false
+  },
+  "benchmark": {
+    "published_cards": 10,
+    "valid_comparative_cards": 9,
+    "comparative_card_ids": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9"
+    ],
+    "excluded_card_ids": [
+      "C10"
+    ],
+    "exclusion_reason": "Card 10 contains contradictory slash semantics between its written contract, a fixed example, and its property oracle, plus an incompatible escaped-backslash assertion. The reference gate was passed with a slash hard-code and broadened backslash handling.",
+    "frozen_before_principal_comparison_sweeps": true,
+    "adaptive_deck_development_before_freeze": true,
+    "prompt_guidance_disclosure": "Cards 7 and 9 include prior failure evidence; Card 9 also supplies an explicit DFS/memoization implementation strategy. The recorded comparison is guided execution, not zero-shot problem solving.",
+    "red_gates_verified": true,
+    "acceptance_gate_order": [
+      "worker process outcome or timeout",
+      "tests",
+      "anti-stub check",
+      "test immutability and visible top-level directory-scope check",
+      "runner verdict"
+    ],
+    "retry_policy": "At most one informed retry per card in the principal runner; dedicated follow-ups are preserved as separate source runs.",
+    "hidden_tests": false
+  },
+  "local_hardware": {
+    "product": "MacBook Pro",
+    "soc": "Apple M5 Max",
+    "reported_core_count": 18,
+    "unified_memory_gb": 128,
+    "inference_runtime": "Ollama",
+    "unique_machine_identifiers_published": false
+  },
+  "execution_surfaces": [
+    {
+      "surface": "claude-ollama",
+      "kind": "Claude Code-compatible headless coding harness",
+      "inference": "local Ollama model",
+      "models": [
+        "qwen3.6:27b-mtp-q8_0",
+        "qwen3.6:35b-a3b-mtp-q8_0",
+        "gemma4:31b-coding-mtp-bf16"
+      ],
+      "anthropic_model_used_for_inference": false
+    },
+    {
+      "surface": "OpenCode CLI",
+      "kind": "hosted coding harness using OpenCode Go model routes",
+      "inference": "named hosted model",
+      "anthropic_model_used_for_inference": false
+    },
+    {
+      "surface": "Codex",
+      "kind": "coding harness",
+      "inference": "GPT-5.5 xhigh",
+      "scope": "isolated Card 10 reference only"
+    }
+  ],
+  "headline_results": [
+    {
+      "model": "qwen3.6:27b-mtp-q8_0",
+      "placement": "local",
+      "published_gate_cards_passed": 9,
+      "comparative_cards_total": 9,
+      "detail": "Card 9 timed out after 900 seconds with 9 of 11 tests passing, then passed 11 of 11 on an informed extended retry lasting 2,006 seconds. Post-hoc probes found failure on valid multi-letter cells, boolean acceptance, and large-integer division precision, so this is not full-contract proof."
+    },
+    {
+      "model": "gemma4:31b-coding-mtp-bf16",
+      "placement": "local",
+      "published_gate_cards_passed": 9,
+      "comparative_cards_total": 9,
+      "detail": "Card 9 passed 11 of 11 tests on the first attempt in 804 seconds and passed the post-hoc valid multi-letter-cell probe, but accepted booleans and lost precision on large-integer division."
+    },
+    {
+      "model": "hosted comparison group",
+      "placement": "hosted through the OpenCode CLI using OpenCode Go routes",
+      "published_gate_ceiling": 9,
+      "models_reaching_ceiling": [
+        "opencode-go/glm-5.2",
+        "opencode-go/mimo-v2.5-pro",
+        "opencode-go/qwen3.7-max",
+        "opencode-go/qwen3.7-plus",
+        "opencode-go/qwen3.6-plus",
+        "opencode-go/minimax-m3",
+        "opencode-go/deepseek-v4-flash",
+        "opencode-go/deepseek-v4-pro"
+      ]
+    }
+  ],
+  "claim_status": [
+    {
+      "claim": "A deterministic control plane with zero LLM routing, retry, acceptance, or stop decisions can place smaller models in bounded implementation cells.",
+      "status": "supported_as_first_test"
+    },
+    {
+      "claim": "The tested local Qwen3.6 27B and Gemma 4 31B configurations made the published gates green through Card 9.",
+      "status": "supported_by_recorded_gates_with_posthoc_contract_failures"
+    },
+    {
+      "claim": "A small model can plan or execute arbitrary complex projects without frontier decomposition.",
+      "status": "not_tested"
+    },
+    {
+      "claim": "Card 10 proves a frontier-only capability boundary.",
+      "status": "not_supported_benchmark_invalid"
+    },
+    {
+      "claim": "GPT-5.5 xhigh solved Card 10 semantically.",
+      "status": "not_supported_published_gate_only"
+    }
+  ],
+  "public_evidence_files": [
+    "study.json",
+    "card-catalog.csv",
+    "model-summary.csv",
+    "card-matrix.csv",
+    "local-attempts.csv",
+    "hosted-results.csv",
+    "card10-audit.json",
+    "card10-audit.md",
+    "card9-posthoc-audit.md",
+    "runner-artifacts.csv",
+    "accepted-artifacts/metadata.json",
+    "reference-artifacts/metadata.json",
+    "provenance.md"
+  ]
+}

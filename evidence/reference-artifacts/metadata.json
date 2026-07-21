@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "gpt55-xhigh-c10-reference",
+  "card_id": "C10",
+  "model": "GPT-5.5",
+  "reasoning_effort": "xhigh",
+  "execution_surface": "Codex",
+  "scope": "isolated Card 10 reference only",
+  "ranking_included": false,
+  "solution": "gpt55-xhigh-c10/glob_matcher.py",
+  "solution_sha256": "2ac159171114da34bd74125e701f41a51f770235f0013d27b3dfebe5c0bf4b4a",
+  "gate_output": "gpt55-xhigh-c10/pytest.txt",
+  "gate_output_sha256": "fab45554e8874500361e7be564756efb4843fb7fbb6f63f1cf21d4151a2f45ab",
+  "private_session_sha256": "4eb88120eee6be67bf6f699eb67739ecdac967bb5a603bf7cdbc67a7d56944ec",
+  "frozen_input_sha256": {
+    "card": "5a4c420cac01a1a728e0bf0a0fef7145742ca95f182450092e18ea3588a52415",
+    "prompt": "d6187f51d3a984e74348cfbe9f6e20fbfc8e99478ace1e3386de533831022ae7",
+    "stub": "c08022da5fdf540682e62bae99173f2bae9ed8b5be482535d761d0f257fdf74a",
+    "original_test": "a9a1ba2a63b713b9e22c0862901b9743ea0156405f90e62cb34e9fe40cca3383",
+    "public_normalized_test": "8a2a86aac0af16c61df7a8052b35670a26c0a389c998c3caf8de50a3df73e597"
+  },
+  "published_gate": {
+    "status": "PASS",
+    "tests_passed": 7,
+    "tests_total": 7,
+    "agent_wall_seconds": 167.625,
+    "pytest_seconds": 0.33,
+    "pytest_command_wall_seconds": 0.3601
+  },
+  "implementation_findings": [
+    "Hardcodes pattern a*b with text a/b to return false.",
+    "Treats an escaped-backslash token as matching one or more consecutive text backslashes."
+  ],
+  "interpretation": "Published-gate pass on an invalid card; not a clean semantic solution and excluded from ranking."
+}

@@ -1,0 +1,5 @@
+# Hash-bound historical artifacts must retain their exact bytes across clones.
+benchmark/cards/** -text whitespace=-blank-at-eof
+evidence/accepted-artifacts/** -text whitespace=-blank-at-eof
+evidence/reference-artifacts/** -text whitespace=-blank-at-eof
+runner/archive/** -text whitespace=-blank-at-eof

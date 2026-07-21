@@ -1,0 +1,36 @@
+source_run,model_tag,execution_surface,inference_location,hardware,card_id,attempt,attempt_kind,worker_wall_seconds,timeout,gate_passed,gate_total,stub_gate,scope_gate,runner_verdict,comparative_score_effect,note
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C1,1,frozen_prompt,66,false,7,7,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C2,1,frozen_prompt,98,false,7,7,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C3,1,frozen_prompt,80,false,6,6,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C4,1,frozen_prompt,50,false,5,5,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C5,1,frozen_prompt,44,false,9,9,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C6,1,frozen_prompt,62,false,12,12,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C7,1,frozen_prompt,451,false,8,8,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C8,1,frozen_prompt,78,false,9,9,OK,OK,PASS,accepted_card,
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C9,1,frozen_prompt,953,true,4,11,OK,OK,TIMEOUT,none,"Timed out with a non-passing implementation"
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C9,2,informed_retry,901,true,4,11,OK,OK,TIMEOUT,none,"Retry timed out; valid ceiling remained C8"
+local_sweep,qwen3.6:35b-a3b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C10,,,,false,,,not_run,not_run,SKIPPED_AFTER_BREAK,excluded_card,"Skipped after the valid-card breakpoint"
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C1,1,frozen_prompt,229,false,7,7,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C2,1,frozen_prompt,501,false,7,7,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C3,1,frozen_prompt,270,false,6,6,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C4,1,frozen_prompt,201,false,5,5,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C5,1,frozen_prompt,227,false,9,9,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C6,1,frozen_prompt,280,false,12,12,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C7,1,frozen_prompt,235,false,8,8,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C8,1,frozen_prompt,329,false,9,9,OK,OK,PASS,accepted_card,
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C9,1,frozen_prompt,804,false,11,11,OK,OK,PASS,accepted_card,"Passed the spreadsheet engine on the first attempt"
+local_sweep,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C10,1,frozen_prompt,900,true,0,7,FAIL,OK,TIMEOUT,excluded_card,"Published Card 10 is excluded from capability scoring"
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C1,1,frozen_prompt,171,false,7,7,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C2,1,frozen_prompt,201,false,7,7,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C3,1,frozen_prompt,211,false,6,6,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C4,1,frozen_prompt,145,false,5,5,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C5,1,frozen_prompt,134,false,9,9,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C6,1,frozen_prompt,239,false,12,12,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C7,1,frozen_prompt,303,false,8,8,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C8,1,frozen_prompt,129,false,9,9,OK,OK,PASS,accepted_card,
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C9,1,frozen_prompt,900,true,9,11,OK,OK,TIMEOUT,none,"Two tests remained failing at the 900-second timeout"
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C9,2,informed_extended_retry,2006,false,11,11,OK,OK,PASS,accepted_card,"Exact configured retry cap was not retained in the result row"
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C10,1,frozen_prompt,900,true,3,7,OK,OK,TIMEOUT,excluded_card,"Published Card 10 is excluded from capability scoring"
+qwen27_forced_followup,qwen3.6:27b-mtp-q8_0,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C10,2,informed_retry,900,true,0,7,FAIL,OK,TIMEOUT,excluded_card,"Retry ended on the untouched stub; Card 10 is excluded"
+gemma_card10_followup,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C10,1,dedicated_followup,900,true,0,7,OK,OK,TIMEOUT,excluded_card,"Separate Card-10 follow-up; benchmark is excluded"
+gemma_card10_followup,gemma4:31b-coding-mtp-bf16,claude-ollama,local_Ollama,M5_Max_18-core_128GB,C10,2,informed_retry,900,true,5,7,OK,OK,TIMEOUT,excluded_card,"Best Gemma published-gate result; benchmark is excluded"

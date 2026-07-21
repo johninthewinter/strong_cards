@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "card_id": "C9",
+  "card_task": "spreadsheet engine",
+  "artifacts": [
+    {
+      "model": "qwen3.6:27b-mtp-q8_0",
+      "solution": "qwen27-c9/spreadsheet.py",
+      "solution_sha256": "635b7b2addecf5418205fb3fa96592968e782a1062c71a27e2d48339bfcbbcdd",
+      "gate_output": "qwen27-c9/pytest.txt",
+      "gate_output_sha256": "0c42ab8123fcb13fb141f85fe1c2ccfba497885db9741e077f51097581cc42ee",
+      "published_gate": "11 passed",
+      "posthoc_multi_letter_probe": "failed",
+      "posthoc_boolean_value_probe": "failed",
+      "posthoc_unbounded_integer_division_probe": "failed",
+      "interpretation": "Published-gate pass after an extended informed rerun; not full-contract proof."
+    },
+    {
+      "model": "gemma4:31b-coding-mtp-bf16",
+      "solution": "gemma4-c9/spreadsheet.py",
+      "solution_sha256": "174b67665dc1058f10567bfebf2b6e7e6e19e1bfeb1148e13219a2328fa14783",
+      "gate_output": "gemma4-c9/pytest.txt",
+      "gate_output_sha256": "e8f01c9ea06de443c433d59484983036f62a38e00c91145186b7988e21335a39",
+      "published_gate": "11 passed",
+      "posthoc_multi_letter_probe": "passed",
+      "posthoc_boolean_value_probe": "failed",
+      "posthoc_unbounded_integer_division_probe": "failed",
+      "interpretation": "First-attempt published-gate pass; one post-hoc contract probe also passed."
+    }
+  ],
+  "posthoc_probes": [
+    {
+      "name": "valid_multi_letter_cells",
+      "input": {
+        "AA1": 2,
+        "AB1": "=AA1 + 3",
+        "AC1": "=SUM(AA1:AB1)"
+      },
+      "expected": {
+        "AA1": 2,
+        "AB1": 5,
+        "AC1": 7
+      },
+      "why": "The written C9 contract allows one or more uppercase letters in a column name, but the public properties generate only A-D."
+    },
+    {
+      "name": "boolean_value_rejection",
+      "input_description": "A1 contains true rather than an integer literal or formula string.",
+      "expected": "SpreadsheetError",
+      "observed": "Both artifacts accepted the value because Python bool is a subclass of int."
+    },
+    {
+      "name": "unbounded_integer_division",
+      "input_description": "A1 is 100000000000000000000 and B1 divides A1 by 3.",
+      "expected": "33333333333333333333",
+      "observed": "Both artifacts returned 33333333333333331968 after losing precision through float conversion."
+    }
+  ]
+}

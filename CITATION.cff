@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If this pilot informs your work, cite it as follows."
+title: "Strong Cards: A No-LLM-Orchestrator Pilot for Model Placement"
+type: software
+authors:
+  - family-names: Tremblay
+    given-names: Jonathan
+version: 0.1.0
+date-released: 2026-07-21
+license: MIT
+abstract: >-
+  A first model-placement study in which frontier reasoning authors frozen
+  task contracts before execution, a deterministic controller owns runtime
+  authority, local models perform bounded coding work, and hosted routes provide
+  a comparison lane.

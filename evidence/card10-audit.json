@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "card_id": "C10",
+  "task": "glob matcher",
+  "audit_verdict": "invalid_for_capability_comparison",
+  "ranking_included": false,
+  "primary_defect": {
+    "id": "slash_semantics",
+    "contract_semantics": "The written card says star matches zero or more characters and explicitly says not to implement path semantics.",
+    "fixed_example_semantics": "The fixed test requires glob_match(\"a*b\", \"a/b\") to be false, which introduces path-like slash semantics.",
+    "property_oracle_semantics": "The property test compares simple star/question patterns with fnmatch.fnmatchcase. For pattern a*b and text a/b, that oracle returns true.",
+    "consequence": "No single general rule can satisfy all three statements. A submission can satisfy the published gate by adding a case-specific exception."
+  },
+  "secondary_defect": {
+    "id": "escaped_backslash_cardinality",
+    "contract_semantics": "The written card says a backslash escapes exactly one following character, including another backslash. Two backslash code points in a pattern therefore denote one literal backslash.",
+    "fixed_example_semantics": "A fixed test requires a pattern containing abc followed by two backslash code points to match text containing abc followed by two backslash code points. Under the contract, that pattern denotes only one trailing literal backslash, so full-string matching should be false.",
+    "suite_consistency": "Another fixed example uses an escaped backslash to match one text backslash, so the suite does not define one coherent broadened escape rule.",
+    "consequence": "A submission can satisfy the published gate by broadening escaped-backslash matching beyond the written one-character escape semantics."
+  },
+  "reference_run": {
+    "model": "GPT-5.5 xhigh",
+    "execution_surface": "Codex",
+    "scope": "C10 only",
+    "published_gate": "PASS",
+    "published_tests_passed": 7,
+    "published_tests_total": 7,
+    "agent_wall_seconds": 167.625,
+    "pytest_seconds": 0.33,
+    "published_solution": "reference-artifacts/gpt55-xhigh-c10/glob_matcher.py",
+    "published_solution_sha256": "2ac159171114da34bd74125e701f41a51f770235f0013d27b3dfebe5c0bf4b4a",
+    "published_gate_output": "reference-artifacts/gpt55-xhigh-c10/pytest.txt",
+    "published_gate_output_sha256": "fab45554e8874500361e7be564756efb4843fb7fbb6f63f1cf21d4151a2f45ab",
+    "implementation_finding": "The accepted implementation hardcoded pattern a*b with text a/b to return false and broadened escaped-backslash matching for the second contradictory example.",
+    "capability_interpretation": "not_clean_semantic_evidence"
+  },
+  "local_observations": [
+    {
+      "model": "qwen3.6:27b-mtp-q8_0",
+      "attempts": 2,
+      "timeout_seconds_each": 900,
+      "best_published_gate": "3/7",
+      "capability_interpretation": "none_card_excluded"
+    },
+    {
+      "model": "gemma4:31b-coding-mtp-bf16",
+      "attempts": 3,
+      "timeout_seconds_each": 900,
+      "best_published_gate": "5/7",
+      "capability_interpretation": "none_card_excluded"
+    }
+  ],
+  "required_repair": [
+    "Choose and state one slash policy.",
+    "Choose and state one exact escaped-backslash policy.",
+    "Align fixed examples and the property oracle with both policies.",
+    "Remove prompt-envelope contamination and refreeze every input hash.",
+    "Add hidden tests that reject case-specific and overbroad exceptions.",
+    "Re-run every compared model from clean isolated stubs.",
+    "Repeat runs before estimating a capability boundary."
+  ],
+  "allowed_public_claim": "GPT-5.5 xhigh passed the published seven-test C10 gate, after which audit found two contract-test contradictions; the accepted implementation hardcoded the slash case and broadened escaped-backslash behavior.",
+  "disallowed_public_claims": [
+    "GPT-5.5 xhigh cleanly solved C10.",
+    "Only a frontier model can solve C10.",
+    "The local C10 timeouts establish a model capability ceiling."
+  ]
+}
