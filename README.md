@@ -8,7 +8,7 @@
  /____/  |_|  |_| \_\\___/|_| \_|\____|  \____/_/   \_\_| \_\____/|____/
 ```
 
-## A first step toward a fully deterministic delivery workflow — and toward stronger, more efficient hub-and-spoke LLM orchestration
+## Bringing LLM work under deterministic control — and making hub-and-spoke orchestration stronger and cheaper
 
 A **Strong Card** is a frozen, hash-pinned execution contract, compiled once by
 a frontier model before any worker runs.
@@ -34,7 +34,7 @@ This pilot advances two connected goals:
 
 | Goal | Role of Strong Cards |
 |---|---|
-| A fully deterministic delivery workflow | Move runtime authority from an LLM orchestrator into explicit, replayable code |
+| LLM work under fully deterministic control | Move runtime authority from an LLM orchestrator into explicit, replayable code |
 | Stronger, cheaper hub-and-spoke orchestration | Give worker spokes frozen contracts and machine gates instead of open-ended prompts, so the hub's reasoning is reserved for genuine exceptions |
 
 The pilot directly evaluates the first architecture. Applying Strong Cards
@@ -438,8 +438,8 @@ This is not "a small model replaced the frontier model."
 The frontier model compressed ambiguity. Deterministic code held authority. The
 smaller model performed the transformation.
 
-That is not a model trick. It is a systems architecture — a first step toward a
-fully deterministic delivery workflow, and a concrete path toward stronger,
-cheaper hub-and-spoke systems.
+That is not a model trick. It is a systems architecture — LLM work brought
+under deterministic control, and a concrete path toward stronger, cheaper
+hub-and-spoke systems.
 
 The first claim has pilot evidence. The second is the next research program.
