@@ -101,6 +101,28 @@ earlier direct local routes produced no-write artifacts that disappeared under a
 functional tool loop. An agent benchmark measures model, prompt, tool schema,
 adapter, permissions, time budget, and gate together.
 
+## The ten cards
+
+The deck is a progressive ladder, not ten unrelated prompts. Each card adds a
+different kind of engineering pressure while keeping the worker inside a frozen
+contract. C5 and C6 deliberately revisit C1 and C2 under harder conditions.
+
+| Card | Task | The challenge | Public tests |
+|---|---|---|---:|
+| C1 | LRU cache | Fixed capacity, recency refreshed on every hit and update, evict exactly the least-recently-used key when full | 7 |
+| C2 | Interval merge | Closed integer intervals, so touching ranges merge; canonical sorted output; caller input never mutated | 7 |
+| C3 | Bank ledger | Not CRUD but a state machine: rejected debits leave state untouched, transfers are atomic, no balance crosses the overdraft limit | 6 |
+| C4 | Undo stack | Immutable undo and redo, where a push after an undo must branch and discard the redo future | 5 |
+| C5 | Generic LRU class | C1's behavior again as a typed, reusable generic class | 9 |
+| C6 | Rich interval merge | C2 under pressure: negative, nested, duplicate, zero-length, unsorted, densely overlapping ranges | 12 |
+| C7 | Expression evaluator | Hand-written parser for integer arithmetic with variables, precedence, unary signs and parentheses; no `eval` | 8 |
+| C8 | Topological batcher | Batch tasks into parallel waves by dependency order, detect cycles, sort each batch for deterministic output | 9 |
+| C9 | Spreadsheet engine | Everything above at once: formula parser, forward references, `SUM(A1:B3)` ranges, cycle detection, truncating division | 11 |
+| C10 | Glob matcher | `*`, `?`, escaping, bracket classes, Unicode — **invalid: its contract and its tests contradict each other** | 7 |
+
+Every card ships its frozen contract, a failing stub, and its public test file.
+[Read the cards themselves](benchmark/README.md).
+
 ## Results
 
 Local and hosted lanes are equal citizens in this pilot. They used different
@@ -137,6 +159,12 @@ Per-card worker wall seconds, first attempt except where noted:
 | C7 | 235 | 303 | 451 |
 | C8 | 329 | 129 | 78 |
 | C9 | 804 pass | 900 timeout, then 2,006 pass | 953 and 901, both timeouts |
+| C10 | three 900 timeouts, best 5/7 | two 900 timeouts, best 3/7 | not run, run ended at C9 |
+
+No local model cleared Card 10, and the row is shown rather than hidden: the
+card is invalid for comparison, so those timeouts are execution evidence only
+and change no ranking. Qwen3.6 35B never reached it, because its run ended at
+the C9 break.
 
 The 2,006-second accepted Qwen C9 record exceeds the nominal 900-second retry
 budget. The archive preserves the accepted result but not enough launch-level
