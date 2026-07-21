@@ -193,41 +193,46 @@ planned measurements for the next run.
 ## Architecture: intelligence before the loop, authority outside the model
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'ui-sans-serif, -apple-system, Segoe UI, Helvetica, Arial, sans-serif','fontSize':'14px','lineColor':'#8590a2','edgeLabelBackground':'#ffffff','textColor':'#1b1c3a'}}}%%
 flowchart TB
-    subgraph FRONTIER["1 - Frontier design phase (run once, upstream)"]
-        A["Problem and repository facts"]
-        B["Frontier reasoning: architecture, planning, decomposition"]
-        C["Compile Strong Cards: goal, writable file, interface, tests, invariants, non-goals, failure protocol, gate"]
-        D["Freeze: hash-pin every execution input"]
-        A --> B --> C --> D
+    subgraph FRONTIER["&nbsp;1 &nbsp;·&nbsp; FRONTIER DESIGN PHASE &nbsp;—&nbsp; run once, upstream, then frozen&nbsp;"]
+        direction LR
+        A["Problem and<br/>repository facts"] --> B["Frontier reasoning<br/><i>architecture · planning<br/>decomposition</i>"] --> C["Compile Strong Cards<br/><i>goal · writable file · interface<br/>tests · invariants · non-goals<br/>failure protocol · gate</i>"] --> D["Freeze<br/><b>hash-pin every<br/>execution input</b>"]
     end
 
-    subgraph CONTROL["2 - Deterministic control plane (shell and Python, no LLM)"]
-        E["Read manifest and fixed card order"]
-        F["Dispatch one card to the worker adapter"]
-        G{"Gates: pytest, anti-stub, test-integrity, v1 directory scope"}
-        H["Append invocation event, advance to next card"]
-        I["Compose one mechanical feedback packet"]
-        J["Stop and escalate to human or frontier"]
+    subgraph CONTROL["&nbsp;2 &nbsp;·&nbsp; DETERMINISTIC CONTROL PLANE &nbsp;—&nbsp; shell and Python · zero LLM control-plane decisions&nbsp;"]
+        direction LR
+        E["Read manifest and<br/>fixed card order"] --> F["Dispatch one card<br/>to the worker adapter"]
+        F -. prompt .-> K["<b>3 · WORKER</b><br/>small, local, or hosted<br/>writes code, runs tools<br/><i>replaceable back end</i>"]
+        K -. patch .-> G{"GATES<br/>pytest · anti-stub<br/>test-integrity<br/>v1 directory scope"}
+        G -->|pass| H["Append invocation event<br/>advance to next card"]
+        G -->|"retryable failure<br/>one informed retry"| I["Compose one mechanical<br/>feedback packet"]
+        G -->|"terminal failure<br/>or invalid card"| J["STOP<br/>escalate to human<br/>or frontier"]
+        I --> F
+        H --> F
     end
 
-    subgraph WORKER["3 - Worker execution (replaceable back end)"]
-        K["Small, local, or hosted worker writes code and runs tools"]
-    end
+    D ==>|frozen contract| E
 
-    D --> E --> F --> K --> G
-    G -->|pass| H
-    H --> F
-    G -->|retryable failure: one informed retry| I
-    I --> F
-    G -->|terminal failure or invalid card| J
+    classDef frontier fill:#eef1ff,stroke:#5a63d8,stroke-width:1.5px,color:#1b1c3a
+    classDef control fill:#e8f6ef,stroke:#219167,stroke-width:1.5px,color:#0c2a1e
+    classDef gate fill:#fff3dc,stroke:#c98910,stroke-width:3px,color:#3a2708
+    classDef stop fill:#fadbd8,stroke:#a5382d,stroke-width:2.5px,color:#3a0f0c
+    classDef worker fill:#f6ecff,stroke:#8b46c4,stroke-width:2px,stroke-dasharray:6 3,color:#2a0f3a
 
-    classDef frontier fill:#e8eaf6,stroke:#3949ab,color:#111;
-    classDef control fill:#e0f2f1,stroke:#00796b,color:#111;
-    classDef worker fill:#fff3e0,stroke:#ef6c00,color:#111;
-    class A,B,C,D frontier;
-    class E,F,G,H,I,J control;
-    class K worker;
+    class A,B,C,D frontier
+    class E,F,H,I control
+    class G gate
+    class J stop
+    class K worker
+
+    style FRONTIER fill:#fafbff,stroke:#7079e4,stroke-width:1px,stroke-dasharray:5 4,color:#7079e4
+    style CONTROL fill:#f7fdfa,stroke:#2fa37a,stroke-width:1px,stroke-dasharray:5 4,color:#2fa37a
+
+    linkStyle 4,5 stroke:#8b46c4,stroke-width:2px
+    linkStyle 6 stroke:#219167,stroke-width:3px
+    linkStyle 8 stroke:#a5382d,stroke-width:3px
+    linkStyle 11 stroke:#5a63d8,stroke-width:3.5px
 ```
 
 There is no LLM router, supervisor, or judge in the runtime control plane. The
